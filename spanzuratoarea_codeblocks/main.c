@@ -98,7 +98,7 @@ char* mask_new( char* word ){
 void mask_beggining_reveal ( char* word, char* mask ){
     int length = strlen(word);
     mask[0] = word[0];
-    mask[length] = word[length];
+    mask[length-1] = word[length-1];
 
 }
 
@@ -140,7 +140,8 @@ void game_print ( char* mask, int no_lives ){
 void game_play ( char* word, char* mask, int no_lives ){
     while ( true ){
         game_print( mask, no_lives );
-        char c = getc(stdin);
+        char c = getc(stdin); // reads the inserted letter
+        getc(stdin); // reads new line character ( daca nu am folosi getc ar citi \n in loc de tasta introdusa de la tastatura la urmatorul ciclu )
         if ( letter_check( word, mask, c ) ){
             letter_reveal( word, mask, c );
         }else{
@@ -176,18 +177,5 @@ int main(){
 
     game_initialize();
 
-//	//printf("%s",get_random_word());
-//	int i;
-//	char* word = get_random_word();
-//	for(  i = 0; word[i] != '\0'; i++ ){
-//        printf("%d %c\t", word[i], word[i]);
-//    }
-//    printf("%d", word[i+1]);
-//  clrscr() - curata consola
-
-
-//printf("hsdjgjds");
-//getc(stdin);
-//system(CLEAR_SCREEN);
 	return 0;
 }

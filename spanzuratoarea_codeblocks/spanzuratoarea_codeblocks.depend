@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1593608951 source:c:\users\sorina\documents\github\spanzuratoarea\spanzuratoarea_codeblocks\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
