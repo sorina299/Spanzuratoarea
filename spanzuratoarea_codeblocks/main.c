@@ -40,7 +40,6 @@ char* get_random_word (){
 	printf(" a=%d\t count=%d\n", a, count);
 
 	count = 0;
-	//rewind( file );
 	file = fopen("cuvinte.txt", "r");
     if ( file == EOF ){
         printf("Nu s a resetat fisierul");
@@ -48,23 +47,14 @@ char* get_random_word (){
 
 	for( c = getc(file); c != EOF; c = getc(file) ){
 
-        //printf("%c", c );
-
 		if ( a == count ){
-			// extragem cuvantul
 			int i;
 			word[0] = c;
 			for( c = getc(file), i = 1 ; c != '\n'; c = getc(file), i++ ){
 				word[i] = c;
-                //printf("%c", c );
 			}
 			word[i+1] = '\0';
 			fclose(file);
-			//printf("%s", word);
-//			for( int i = 0; word[i] != '\0'; i++ ){
-//                printf("%d %c\t", word[i], word[i]);
-//			}
-//			printf("%d", word[i+1]);
 			return word;
 
 
@@ -132,7 +122,8 @@ void letter_reveal ( char* word, char* mask, char c  ){
 void game_print ( char* mask, int no_lives ){
     system(CLEAR_SCREEN);
     printf("\n");
-    printf("word: %s", mask);
+    printf("word:");
+    printf("\033[1;35m %s \033[0m", mask);
     printf("\t\t\tLIVES LEFT:%d", no_lives);
     printf("\n\nIntroduceti o litera:");
 }
@@ -150,12 +141,13 @@ void game_play ( char* word, char* mask, int no_lives ){
 
         if ( no_lives == 0 ){
             system(CLEAR_SCREEN);
-            printf("Ati pierdut:(");
+            printf("\033[1;31mAti pierdut:( \033[0m");
+
             return;
         }
         if ( word_is_found( word, mask ) ){
             system(CLEAR_SCREEN);
-            printf("Ati castigat!");
+            printf("\033[1;32mAti castigat! \033[0m");
             return;
         }
     }
@@ -169,9 +161,6 @@ void game_initialize (){
 
     game_play( word, mask, no_lives );
 }
-
-
-
 
 int main(){
 
