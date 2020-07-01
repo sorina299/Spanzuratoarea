@@ -9,6 +9,7 @@
     #define CLEAR_SCREEN "clear"
 #endif
 
+#define LIVES 10
 
 char* get_random_word (){
 
@@ -129,9 +130,42 @@ void letter_reveal ( char* word, char* mask, char c  ){
 }
 
 void game_print ( char* mask, int no_lives ){
-
+    system(CLEAR_SCREEN);
+    printf("\n");
+    printf("word: %s", mask);
+    printf("\t\t\tLIVES LEFT:%d", no_lives);
+    printf("\n\nIntroduceti o litera:");
 }
 
+void game_play ( char* word, char* mask, int no_lives ){
+    while ( true ){
+        game_print( mask, no_lives );
+        char c = getc(stdin);
+        if ( letter_check( word, mask, c ) ){
+            letter_reveal( word, mask, c );
+        }else{
+            no_lives--;
+        }
+
+        if ( no_lives == 0 ){
+            system(CLEAR_SCREEN);
+            printf("Ati pierdut:(");
+            return;
+        }
+        if ( word_is_found( word, mask ) ){
+            system(CLEAR_SCREEN);
+            printf("Ati castigat!");
+            return;
+        }
+    }
+}
+
+void game_initialize (){
+    char* word;
+    char* mask;
+    int no_lives = LIVES;
+
+}
 
 
 
