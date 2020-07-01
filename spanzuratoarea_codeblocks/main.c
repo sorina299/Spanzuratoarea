@@ -164,6 +164,7 @@ void game_initialize (){
     int no_lives = LIVES;
 
     game_play( word, mask, no_lives );
+    printf("\nCuvantul este:%s", word);
 
     free( mask );
     free ( word );

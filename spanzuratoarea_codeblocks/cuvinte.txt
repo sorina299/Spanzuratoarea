@@ -1,9 +1,7 @@
-abi
-copil
-spanzuratoarea
 cosmin
+talent
+valoare
 sorina
-elena
-badica
-preda
+
+
 
