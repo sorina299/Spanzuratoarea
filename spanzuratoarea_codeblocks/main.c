@@ -161,16 +161,20 @@ void game_play ( char* word, char* mask, int no_lives ){
 }
 
 void game_initialize (){
-    char* word;
-    char* mask;
+    char* word = get_random_word();
+    char* mask = mask_new( word );
+    mask_beggining_reveal( word, mask );
     int no_lives = LIVES;
 
+    game_play( word, mask, no_lives );
 }
 
 
 
 
 int main(){
+
+    game_initialize();
 
 //	//printf("%s",get_random_word());
 //	int i;
@@ -182,8 +186,8 @@ int main(){
 //  clrscr() - curata consola
 
 
-printf("hsdjgjds");
-getc(stdin);
-system(CLEAR_SCREEN);
+//printf("hsdjgjds");
+//getc(stdin);
+//system(CLEAR_SCREEN);
 	return 0;
 }
