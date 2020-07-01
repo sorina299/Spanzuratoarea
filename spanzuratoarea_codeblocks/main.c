@@ -14,7 +14,8 @@
 char* get_random_word (){
 
 	srand(time(0));
-	char* word = (char*)malloc( 20 * sizeof(char) );
+	char* word; //= (char*)malloc( 20 * sizeof(char) );
+    int length = 1;
 
 	FILE *file;
 	file = fopen("cuvinte.txt", "r");
@@ -49,10 +50,13 @@ char* get_random_word (){
 
 		if ( a == count ){
 			int i;
+			word = (char*)malloc( length * sizeof( char ));
 			word[0] = c;
 			for( c = getc(file), i = 1 ; c != '\n'; c = getc(file), i++ ){
+                realloc ( word, ++length * sizeof ( char ) );
 				word[i] = c;
 			}
+            realloc ( word, ++length * sizeof ( char ) );
 			word[i+1] = '\0';
 			fclose(file);
 			return word;
@@ -160,6 +164,9 @@ void game_initialize (){
     int no_lives = LIVES;
 
     game_play( word, mask, no_lives );
+
+    free( mask );
+    free ( word );
 }
 
 int main(){
